@@ -1,0 +1,21 @@
+---
+
+- name: "NOTSCORED | 5.6| AUDIT | Ensure root login is restricted to system console "
+  block:
+  - name: "NOTSCORED | 5.6 | AUDIT | Ensure root login is restricted to system console"
+    command: cat /etc/securetty
+    changed_when: no
+    become: yes
+    register: amznlnx2_5_6_audit
+
+  - name: "NOTSCORED | 5.6 | AUDIT | Ensure root login is restricted to system console"
+    debug:
+      msg:
+      - "These are the consoles with root login access, please review:"
+      - "{{ amznlnx2_5_6_audit.stdout_lines }}"
+  when:
+  - amznlnx2cis_rule_5_6
+  tags:
+  - level1
+  - audit
+  - rule_5.6

@@ -1,0 +1,11 @@
+---
+
+- name: "MANUAL | 2.3 | Ensure nonessential services are removed or masked (Manual)"
+  debug:
+    msg: "<----- not required"
+  when:
+  - amznlnx2cis_rule_2_3
+  tags:
+  - level1
+  - notscored
+  - rule_2.3
