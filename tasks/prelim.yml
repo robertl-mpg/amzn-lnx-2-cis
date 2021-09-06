@@ -59,10 +59,17 @@
       - "bootloader file set to {{ amznlnx2cis_bootloader_file }}"
       - "legacy boot equals {{ amznlnx2cis_legacy_boot }}"
 
-- name: "PRELIM | Section 1.6 | Ensure SELinux is installed"
-  package:
-    name: libselinux
-    state: present
+- name: "PRELIM | Section 1.6 | SELinux"
+  block:
+    - name: "PRELIM | Section 1.6 | Ensure SELinux is installed"
+      package:
+        name:
+          - libselinux
+          - policycoreutils-python
+        state: present
+
+    - name: "PRELIM | Section 1.6 | Ensure firewalld_t is set to permissive"
+      shell: semanage permissive -a firewalld_t
   when:
   - not amznlnx2cis_selinux_disable
   vars:

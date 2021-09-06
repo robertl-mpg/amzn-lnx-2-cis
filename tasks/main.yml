@@ -56,12 +56,14 @@
   - prelim_tasks
   - always
 
-- import_tasks: pre_LE_audit.yml
-  when:
-  - amznlnx2cis_run_audit
-  tags:
-  - amznlnx2cis_run_audit
-  - run_audit
+# The below performs pre-audits.  Audits have not yet been created for Amazon Linux 2.
+# Skipping for now
+# - import_tasks: pre_LE_audit.yml
+#   when:
+#   - amznlnx2cis_run_audit
+#   tags:
+#   - amznlnx2cis_run_audit
+#   - run_audit
 
 - name: Gather the package facts
   package_facts:
@@ -99,23 +101,26 @@
   when: amznlnx2cis_section5
   tags:
   - amznlnx2cis_section5
-#
-# - include: section_6/main.yml
-#   when: rhel7cis_section6
-#   tags:
-#   - rhel7cis_section6
-#
-# - include: post.yml
-#   tags:
-#   - post_tasks
-#   - always
-#
-# - name: flush handlers
-#   meta: flush_handlers
-#
+
+- include: section_6/main.yml
+  when: amznlnx2cis_section6
+  tags:
+  - amznlnx2cis_section6
+
+- include: post.yml
+  tags:
+  - post_tasks
+  - always
+
+- name: flush handlers
+  meta: flush_handlers
+
+# The below performs post-audits.  Audits have not yet been created for Amazon Linux 2.
+# Skipping for now
+
 # - import_tasks: post_LE_audit.yml
 #   when:
-#   - rhel7cis_run_audit
+#   - amznlnx2cis_run_audit
 #   tags:
 #   - run_audit
 #
@@ -123,4 +128,4 @@
 #   debug:
 #     msg: "{{ audit_results.split('\n') }}"
 #   when:
-#   - rhel7cis_run_audit
+#   - amznlnx2cis_run_audit

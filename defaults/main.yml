@@ -8,7 +8,6 @@ amznlnx2cis_section6: true
 
 # 5.7 Group to be used for su
 # this group needs to exists groups will not be created for remediation this is considered sys admins
-
 # amznlnx2cis_sugroup: sugroup
 
 ## Python Binary
@@ -253,6 +252,40 @@ amznlnx2cis_rule_5_5_5: true
 amznlnx2cis_rule_5_6: true
 amznlnx2cis_rule_5_7: true
 
+# Section 6 rules
+# Section 6 is System Maintenance (System File Permissions and User and Group Settings)
+amznlnx2cis_rule_6_1_1: true
+amznlnx2cis_rule_6_1_2: true
+amznlnx2cis_rule_6_1_3: true
+amznlnx2cis_rule_6_1_4: true
+amznlnx2cis_rule_6_1_5: true
+amznlnx2cis_rule_6_1_6: true
+amznlnx2cis_rule_6_1_7: true
+amznlnx2cis_rule_6_1_8: true
+amznlnx2cis_rule_6_1_9: true
+amznlnx2cis_rule_6_1_10: true
+amznlnx2cis_rule_6_1_11: true
+amznlnx2cis_rule_6_1_12: true
+amznlnx2cis_rule_6_1_13: true
+amznlnx2cis_rule_6_1_14: true
+amznlnx2cis_rule_6_2_1: true
+amznlnx2cis_rule_6_2_2: true
+amznlnx2cis_rule_6_2_3: true
+amznlnx2cis_rule_6_2_4: true
+amznlnx2cis_rule_6_2_5: true
+amznlnx2cis_rule_6_2_6: true
+amznlnx2cis_rule_6_2_7: true
+amznlnx2cis_rule_6_2_8: true
+amznlnx2cis_rule_6_2_9: true
+amznlnx2cis_rule_6_2_10: true
+amznlnx2cis_rule_6_2_11: true
+amznlnx2cis_rule_6_2_12: true
+amznlnx2cis_rule_6_2_13: true
+amznlnx2cis_rule_6_2_14: true
+amznlnx2cis_rule_6_2_15: true
+amznlnx2cis_rule_6_2_16: true
+amznlnx2cis_rule_6_2_17: true
+
 # Service configuration booleans set true to keep service
 amznlnx2cis_allow_autofs: false
 amznlnx2cis_avahi_server: false
@@ -288,7 +321,7 @@ amznlnx2cis_gui: no
 amznlnx2cis_is_router: false
 
 # IPv6 required
-amznlnx2cis_ipv6_required: true
+amznlnx2cis_ipv6_required: false
 
 # Set to 'true' if X Windows is needed in your environment
 amznlnx2cis_xwindows_required: no
@@ -402,6 +435,14 @@ amznlnx2cis_int_gid: 1000
 # this group needs to exists groups will not be created for remediation this is considered sys admins
 
 # amznlnx2cis_sugroup: sugroup
+
+# amznlnx2_6.1.1
+amznlnx2cis_rpm_audit_file: /var/tmp/rpm_file_check
+
+# amznlnx2_6.2.12
+amznlnx2cis_no_world_write_adjust: true
+amznlnx2cis_passwd_label: "{{ (this_item | default(item)).id }}: {{ (this_item | default(item)).dir }}"
+amznlnx2cis_dotperm_ansibleManaged: true
 
 # SELinux policy
 amznlnx2cis_selinux_pol: targeted
