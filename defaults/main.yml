@@ -416,7 +416,7 @@ amznlnx2cis_inactive_whitelist:
 
 amznlnx2cis_pass:
   max_days: 90
-  min_days: 7
+  min_days: 1
   warn_age: 7
 
 # 5.4.5
