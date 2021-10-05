@@ -3,13 +3,15 @@
 - name: "AUTOMATED | 6.2.1 | PATCH | Ensure accounts in /etc/passwd use shadow passwords"
   block:
   - name: "AUTOMATED | 6.2.1 | PATCH | Ensure accounts in /etc/passwd use shadow passwords"
+    vars:
+      query: "[?password != 'x']"
     shell: sed -e 's/^\([a-zA-Z0-9_]*\):[^:]*:/\1:x:/' -i /etc/passwd
-    loop: "{{ amznlnx2cis_passwd | selectattr('password', '!=', 'x') | list }}"
+    loop: "{{ amznlnx2cis_passwd | json_query(query) | list }}"
     args:
       warn: false
     register: amznlnx2_6_2_1_shadow
     when:
-    - amznlnx2cis_passwd | selectattr('password', '!=', 'x')
+    - "amznlnx2cis_passwd | json_query(query) | list"
 
   - name: "AUTOMATED | 6.2.1 | PATCH | Ensure accounts in /etc/passwd use shadow passwords | Good News"
     debug:
